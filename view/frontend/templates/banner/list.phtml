@@ -1,0 +1,39 @@
+<?php
+/** @var \PHPCuong\BannerSlider\Block\Widget\BannerSlider $block */
+$banners = $block->getBanners();
+?>
+<?php if ($banners->getSize()): ?>
+    <div class="owl-carousel homes-slider">
+        <?php foreach ($banners as $banner): ?>
+            <div class="item">
+             <div class="des"> <a href="#"> <?= $banner->getName(); ?></a></div>
+             <!-- get description -->
+             <div class="descri"> <a href="#"> <?= $banner->getDes(); ?></a></div>
+                <?php if ($banner->getUrl()): ?>
+                    <a href="<?= $banner->getUrl(); ?>" title="<?= $banner->getName(); ?>">
+                    <?php endif; ?>
+                    <img src="<?= $banner->getImageUrl(); ?>" alt="<?= $banner->getName(); ?>" width="100%" />
+                    <?php if ($banner->getUrl()): ?>
+                    </a>
+
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    
+
+    <script>
+        require(['jquery', 'jquery/ui', 'slick'], function($) {
+            $(document).ready(function() {
+                $(".homes-slider").slick({
+                    dots: true,
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 500,
+                    
+                });
+            });
+        });
+    </script>
+<?php endif; ?> 
